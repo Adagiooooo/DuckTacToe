@@ -1,0 +1,62 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none">
+  <defs>
+    <linearGradient id="water" x1="90" y1="600" x2="1350" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A6DDDA"/>
+      <stop offset=".48" stop-color="#8FD1D0"/>
+      <stop offset="1" stop-color="#B3E3D8"/>
+    </linearGradient>
+    <linearGradient id="glint" x1="160" y1="570" x2="1280" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7FFFB" stop-opacity=".14"/>
+      <stop offset=".5" stop-color="#F7FFFC" stop-opacity=".62"/>
+      <stop offset="1" stop-color="#F7FFFB" stop-opacity=".12"/>
+    </linearGradient>
+  </defs>
+  <!-- A winding, unmistakably blue-green pond with soft grassy banks. -->
+  <path d="M-120 666C142 531 339 538 496 654c161 119 253 106 422 3 173-105 339-142 650-238" stroke="#C8E4C8" stroke-width="410" stroke-linecap="round"/>
+  <path d="M-120 666C142 531 339 538 496 654c161 119 253 106 422 3 173-105 339-142 650-238" stroke="url(#water)" stroke-width="350" stroke-linecap="round"/>
+  <path d="M-120 666C142 531 339 538 496 654c161 119 253 106 422 3 173-105 339-142 650-238" stroke="url(#glint)" stroke-width="250" stroke-linecap="round"/>
+
+  <!-- Ripples across the open water. -->
+  <g stroke="#F8FFFC" stroke-linecap="round" opacity=".72">
+    <path d="M105 638c26-9 52-10 79-6" stroke-width="4"/>
+    <path d="M274 624c19-4 37-3 56 2" stroke-width="3"/>
+    <path d="M914 621c25-13 50-22 78-28" stroke-width="4"/>
+    <path d="M1070 562c22-9 39-14 61-18" stroke-width="3"/>
+    <path d="M1200 520c18-7 34-10 51-12" stroke-width="4"/>
+    <ellipse cx="1090" cy="688" rx="43" ry="8" stroke-width="2"/>
+  </g>
+
+  <!-- Little pond ducks along the open banks. -->
+  <g stroke="#D4A33B" stroke-width="2" stroke-linejoin="round">
+    <ellipse cx="158" cy="625" rx="39" ry="24" fill="#F5C957"/>
+    <circle cx="143" cy="592" r="19" fill="#F5C957"/>
+    <path d="m159 589 20 6-20 7v-13Z" fill="#EF8A4E" stroke="#D77A3F"/>
+    <ellipse cx="169" cy="624" rx="17" ry="10" fill="#FFDF86" stroke="none"/>
+    <circle cx="149" cy="588" r="2.7" fill="#473A2B" stroke="none"/>
+  </g>
+  <g stroke="#D4A33B" stroke-width="2" stroke-linejoin="round" transform="translate(1120 0) scale(.82)">
+    <ellipse cx="158" cy="625" rx="39" ry="24" fill="#F5C957"/>
+    <circle cx="143" cy="592" r="19" fill="#F5C957"/>
+    <path d="m159 589 20 6-20 7v-13Z" fill="#EF8A4E" stroke="#D77A3F"/>
+    <ellipse cx="169" cy="624" rx="17" ry="10" fill="#FFDF86" stroke="none"/>
+    <circle cx="149" cy="588" r="2.7" fill="#473A2B" stroke="none"/>
+  </g>
+
+  <!-- Lily pads and cattails frame the pond. -->
+  <g fill="#70A987" opacity=".82">
+    <path d="M319 718c0-35 29-62 66-62 22 0 41 9 53 25-10-6-22-9-35-9-37 0-66 22-80 52-3-2-4-4-4-6Z"/>
+    <path d="M819 703c0-28 24-50 54-50 18 0 34 8 44 20-9-5-19-7-29-7-30 0-53 18-64 42-3-1-5-3-5-5Z"/>
+    <path d="M1234 788c0-32 27-57 61-57 20 0 38 9 50 23-10-6-21-8-32-8-33 0-61 20-73 48-4-2-6-4-6-6Z"/>
+  </g>
+  <g fill="#F4C7B7" opacity=".9">
+    <circle cx="402" cy="676" r="5"/><circle cx="396" cy="668" r="4"/><circle cx="408" cy="668" r="4"/><circle cx="402" cy="661" r="4"/><circle cx="402" cy="669" r="2" fill="#E7A951"/>
+  </g>
+  <g stroke="#6D9B7B" stroke-width="5" stroke-linecap="round" opacity=".72">
+    <path d="M81 900c7-43 1-75-12-107m22 107c16-48 29-77 49-98m-36 98c1-36 10-58 24-75"/>
+    <path d="M1296 900c-4-39 4-68 20-96m-4 96c14-44 29-64 51-83m-47 83c2-35 12-55 25-70"/>
+  </g>
+  <g fill="#A8754D" opacity=".72">
+    <ellipse cx="69" cy="785" rx="6" ry="15" transform="rotate(-10 69 785)"/>
+    <ellipse cx="1322" cy="794" rx="6" ry="15" transform="rotate(8 1322 794)"/>
+  </g>
+</svg>

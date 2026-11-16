@@ -1,0 +1,189 @@
+﻿@import "tailwindcss";
+@import "tw-animate-css";
+@theme inline {
+  --color-background: var(--background); --color-foreground: var(--foreground); --color-card: var(--card); --color-card-foreground: var(--card-foreground); --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground); --color-secondary: var(--secondary); --color-secondary-foreground: var(--secondary-foreground); --color-muted: var(--muted); --color-muted-foreground: var(--muted-foreground); --color-border: var(--border); --color-ring: var(--ring); --color-destructive: var(--destructive); --font-sans: Arial, Helvetica, sans-serif;
+}
+:root { --background: #eaf5ef; --foreground: #203a42; --card: #fffdf5; --card-foreground: #203a42; --primary: #d99a35; --primary-foreground: #203a42; --secondary: #e3f1e9; --secondary-foreground: #31535a; --muted: #edf5f0; --muted-foreground: #637c7c; --border: #d5e6dc; --ring: #66b4a5; --destructive: #dc4747; }
+* { box-sizing: border-box; }
+body { margin: 0; background: linear-gradient(180deg,#eaf5ef 0%,#e8f3ef 55%,#e9f1e6 100%); color: var(--foreground); font-family: Arial, Helvetica, sans-serif; }
+body::before { content:""; position:fixed; inset:0; z-index:0; pointer-events:none; background:url("/duck-pond-background.webp") center 44% / cover no-repeat; opacity:.72; }
+button { cursor: pointer; }
+::selection { background: #fbd1c8; }
+.page-shell { position:relative; z-index:1; max-width: 1120px; min-height: 100vh; padding: 0 36px 22px; margin: auto; }
+.topbar { height: 76px; border-bottom: 1px solid #eae8e3; display:flex; align-items:center; justify-content:space-between; }
+.brand { display:flex; align-items:center; gap:10px; color:#282724; text-decoration:none; font-size:17px; letter-spacing:-.6px; }.brand strong{font-weight:800}.brand-mark{width:54px;height:39px;display:flex;align-items:center;justify-content:center;position:relative}.brand-mark .duck-token{width:32px;height:32px;flex:none}.brand-mark .duck-token+.duck-token{margin-left:-11px;margin-top:7px}.duck-token{display:block;flex:none;object-fit:contain}.player-icon .duck-token{width:39px;height:39px}.score-symbol .duck-token{width:30px;height:30px}.turn-indicator .duck-token{width:25px;height:25px;margin-top:-4px}.board-duck{display:block;position:relative;width:76%;height:76%;z-index:1}.board-duck-frame{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(0 3px 2px rgba(107,75,22,.12))}.top-note{font-size:9px;letter-spacing:1.55px;color:#88867f;display:flex;align-items:center;gap:8px;font-weight:700}.live-dot{width:7px;height:7px;background:#61b49e;border-radius:50%;box-shadow:0 0 0 3px #e3f2ed}.avatar{width:32px;height:32px;border:0;border-radius:50%;background:#e8ddd0;color:#64584b;font-weight:700}
+.hero{text-align:center;padding:49px 0 34px}.eyebrow{display:inline-flex;align-items:center;gap:7px;color:#e66f55;font-size:9px;letter-spacing:1.7px;font-weight:800}.hero h1{font-size:47px;letter-spacing:-2.2px;line-height:1.02;margin:12px 0 10px;font-weight:750}.hero h1 em{font-family:Georgia,serif;color:#ec765c;font-weight:400}.hero p{font-size:13px;color:#85837e;margin:0}
+.play-layout{max-width:850px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 268px;gap:20px;align-items:start}.game-card,.score-card,.how-card{background:#fff;border:1px solid #eceae5;border-radius:19px;box-shadow:0 9px 35px rgba(56,48,37,.035)}.game-card{padding:20px 24px 14px}.game-card-top{display:flex;justify-content:space-between;align-items:center}.round-label,.game-clock{font-size:9px;font-weight:800;letter-spacing:1.3px;color:#77756f;display:flex;align-items:center;gap:7px}.round-dot{width:7px;height:7px;background:#ef795f;border-radius:50%}.game-clock{color:#aaa8a2;font-size:8px}.players-row{display:grid;grid-template-columns:1fr 35px 1fr;align-items:center;margin:15px 0 13px}.player-card{height:57px;border:1px solid #efede8;border-radius:12px;padding:7px 10px;display:flex;gap:9px;align-items:center;transition:.2s}.player-card.active.x-active{border-color:#f3b1a3;background:#fff9f7}.player-card.active.o-active{border-color:#a7d9cd;background:#f7fcfa}.right-player{justify-content:flex-end}.player-icon{width:34px;height:34px;border-radius:10px;display:grid;place-items:center}.x-color{color:#ed7158;background:#fff0ec}.o-color{color:#48a892;background:#eaf7f3}.player-name,.player-caption{display:block}.player-name{font-size:11px;font-weight:750}.player-caption{font-size:8px;letter-spacing:1.2px;color:#9c9992;margin-top:3px;font-weight:700}.player-score{font-size:20px;font-weight:700;margin-left:auto;color:#3c3a36}.right-player .player-score{margin:0 auto 0 1px}.player-info-right{text-align:right}.versus{text-align:center;font-size:8px;color:#aaa69e;font-weight:800;letter-spacing:.8px}
+.turn-banner{height:39px;background:#faf9f7;border-radius:10px;display:flex;align-items:center;padding:0 12px;gap:8px;color:#34322f}.turn-indicator{color:#ec735a;height:17px}.turn-banner strong{font-size:11px}.turn-hint{font-size:9px;color:#aaa69e;margin-left:auto}.turn-finished{background:#fff5f1}.board{margin:12px auto 11px;width:min(100%,334px);aspect-ratio:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));gap:9px}.square{min-width:0;min-height:0;padding:0;overflow:hidden;border:1px solid #eeece7;background:#fbfaf8;border-radius:15px;color:#ed7259;display:grid;place-items:center;transition:transform .15s,background .15s,border .15s;position:relative}.square:enabled:hover{background:#fff5f1;border-color:#f4c2b7;transform:translateY(-2px)}.square-o{color:#4aa995;background:#f7fcfa}.square-x{background:#fff9f7}.square-number{font-size:9px;letter-spacing:.8px;color:#d7d4cd;opacity:0;transition:opacity .15s}.square:enabled:hover .square-number{opacity:1}.error-message{font-size:11px;color:#c13f3f;text-align:center;margin:0 0 8px}.game-footer{border-top:1px solid #f0eee9;padding-top:10px;display:flex;align-items:center;justify-content:space-between}.game-footer>span{font-size:8px;letter-spacing:1px;font-weight:800;color:#aaa79f;display:flex;align-items:center;gap:7px}.footer-pip{height:6px;width:6px;border-radius:50%;background:#68b6a1}.game-footer button{color:#78766f;font-size:10px}
+.side-column{display:grid;gap:13px}.score-card{padding:17px 17px 0}.aside-heading{display:flex;gap:10px;align-items:center;padding-bottom:12px;border-bottom:1px solid #f0eee9}.aside-icon{height:32px;width:32px;border-radius:10px;display:grid;place-items:center}.trophy-icon{background:#fff3e5;color:#dc9a43}.aside-heading h2{font-size:12px;margin:0 0 4px;letter-spacing:-.2px}.aside-heading p{font-size:9px;color:#9b9891;margin:0}.score-line{display:flex;align-items:center;gap:9px;padding:12px 0 3px}.score-symbol{height:27px;width:27px;border-radius:8px;display:grid;place-items:center}.score-symbol.coral{color:#eb745a;background:#fff0ec}.score-symbol.teal{color:#4aa995;background:#eaf7f3}.score-player{font-size:10px;color:#65625c}.score-line strong{margin-left:auto;font-size:16px}.score-line small{font-size:7px;color:#aaa79f;margin-left:4px;letter-spacing:.7px}.score-divider{height:1px;background:#f0eee9;margin:10px 0 9px}.draw-line{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#77746f;padding-bottom:14px}.draw-line strong{font-size:12px;color:#3e3b36}.leaderboard-foot{height:33px;margin:0 -17px;padding:0 17px;background:#faf9f7;border-radius:0 0 19px 19px;display:flex;justify-content:space-between;align-items:center;font-size:7px;letter-spacing:1.15px;color:#aaa69e;font-weight:800}.tiny-stars{color:#e5ae68;letter-spacing:3px}.tip-card{background:#f5eee5;border:1px solid #f0e5d8;border-radius:15px;padding:14px;display:flex;gap:10px;align-items:flex-start;position:relative}.tip-star{width:27px;height:27px;border-radius:8px;background:#fffaf2;color:#d89d4c;display:grid;place-items:center;flex:none}.tip-label{font-size:7px;font-weight:800;letter-spacing:1.15px;color:#a99478}.tip-card p{font-size:10px;line-height:1.65;color:#665c4d;margin:6px 0 0}.tip-card p strong{color:#423c33}.tip-arrow{margin-left:auto;color:#aa9982;margin-top:4px}.how-card{padding:15px 17px}.how-card h3{font-size:11px;margin:0 0 11px}.how-card>div{display:flex;align-items:center;gap:9px;margin:9px 0}.step-number{font-size:8px;font-weight:800;color:#e57961;background:#fff0ec;border-radius:6px;width:22px;height:22px;display:grid;place-items:center;flex:none}.how-card p{font-size:9px;color:#77746e;margin:0}.page-footer{max-width:850px;margin:34px auto 0;border-top:1px solid #eae8e3;padding-top:15px;display:flex;justify-content:space-between;color:#aaa79f;font-size:8px;font-weight:700;letter-spacing:1.2px}.page-footer span:last-child{color:#9b978d}
+@media(max-width:700px){.page-shell{padding:0 18px 20px}.topbar{height:64px}.top-note{font-size:7px;letter-spacing:.8px}.hero{padding:38px 0 27px}.hero h1{font-size:39px}.play-layout{max-width:440px;grid-template-columns:1fr;gap:13px}.game-card{padding:17px 16px 12px}.board{width:min(100%,360px);gap:8px}.square{border-radius:13px}.side-column{grid-template-columns:1fr 1fr;align-items:stretch}.score-card{grid-row:span 2}.page-footer{margin-top:24px;font-size:7px;letter-spacing:.7px}}
+@media(max-width:390px){.side-column{grid-template-columns:1fr}.score-card{grid-row:auto}.hero h1{font-size:35px}.game-card{padding-left:12px;padding-right:12px}}
+
+
+
+
+
+
+
+
+/* Pixel ducks surface with a little splash, then slip beneath the water on a new board. */
+.square:has(.board-duck)::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 15%;
+  width: 44%;
+  height: 9%;
+  border: 2px solid rgba(64, 151, 177, .58);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) scale(.35);
+  animation: water-pop 560ms ease-out both;
+}
+.board-duck-dive { opacity:0; animation:duck-dive-surface 920ms ease-out both; }
+.board-duck-paddle { opacity:1; animation:duck-paddle-surface 920ms cubic-bezier(.2,.8,.25,1) both; }
+.board-duck-float { opacity:1; animation:duck-float-surface 920ms cubic-bezier(.2,.8,.25,1) both; }
+.board.is-sinking .board-duck-dive { animation:duck-dive-sink 680ms ease-out both; }
+.board.is-sinking .board-duck-paddle { animation:duck-paddle-sink 680ms ease-in both; }
+.board.is-sinking .board-duck-float { animation:duck-float-sink 680ms ease-in both; }
+.board.is-sinking .square:has(.board-duck)::after { animation: water-close 680ms ease-out forwards; }
+.board.is-celebrating .board-duck-dive,
+.board.is-celebrating .board-duck-paddle { animation:none; opacity:0; }
+.board.is-celebrating .board-duck-float { animation: duck-celebrate 620ms ease-in-out 2; }
+.board.is-celebrating .square-winner { background:#effaf5; border-color:#75bfa9; box-shadow:inset 0 0 0 2px rgba(76,166,140,.2); animation:winning-square-pulse 1.2s ease-in-out infinite; }
+.board.is-celebrating .board-duck-winner .board-duck-paddle { opacity:1; transform-origin:center; animation:duck-winner-circle 1.2s ease-in-out infinite; }
+.board.is-celebrating .board-duck-winner .board-duck-float { animation:none; opacity:0; }
+@keyframes duck-dive-surface {
+  0%, 10% { opacity:0; transform:translateY(13%) scale(.86); }
+  18% { opacity:1; transform:translateY(7%) scale(.94); }
+  32% { opacity:1; transform:translateY(0) scale(1); }
+  43%, 100% { opacity:0; transform:translateY(-8%) scale(.9); }
+}
+@keyframes duck-paddle-surface {
+  0%, 26% { opacity:0; transform:translateY(14%) scale(.82); }
+  35% { opacity:1; transform:translateY(-8%) scale(1.08); }
+  50% { opacity:1; transform:translateY(2%) scale(.98); }
+  66%, 100% { opacity:0; transform:translateY(7%) scale(.92); }
+}
+@keyframes duck-float-surface {
+  0%, 54% { opacity:0; transform:translateY(12%) scale(.88); }
+  66% { opacity:1; transform:translateY(-4%) scale(1.04); }
+  80% { opacity:1; transform:translateY(1%) scale(.99); }
+  100% { opacity:1; transform:translateY(0) scale(1); }
+}
+@keyframes duck-paddle-sink {
+  0%, 20% { opacity:0; transform:translateY(14%) scale(.84); }
+  31% { opacity:1; transform:translateY(-3%) scale(1.02); }
+  47% { opacity:1; transform:translateY(1%) scale(.98); }
+  65%, 100% { opacity:0; transform:translateY(12%) scale(.84); }
+}
+@keyframes duck-dive-sink {
+  0%, 40% { opacity:0; transform:translateY(-10%) scale(.9); }
+  52% { opacity:1; transform:translateY(0) scale(1); }
+  72% { opacity:1; transform:translateY(2%) scale(.98); }
+  100% { opacity:0; transform:translateY(13%) scale(.82); }
+}
+@keyframes duck-float-sink {
+  0%, 14% { opacity:1; transform:translateY(0) scale(1); }
+  33% { opacity:.8; transform:translateY(4%) scale(.96); }
+  48%, 100% { opacity:0; transform:translateY(11%) scale(.84); }
+}
+@keyframes water-pop {
+  0% { opacity: .7; transform: translateX(-50%) scale(.25); }
+  80% { opacity: .36; transform: translateX(-50%) scale(1.2); }
+  100% { opacity: 0; transform: translateX(-50%) scale(1.45); }
+}
+@keyframes water-close {
+  0% { opacity: .15; transform: translateX(-50%) scale(.6); }
+  40% { opacity: .8; transform: translateX(-50%) scale(1.15); }
+  100% { opacity: 0; transform: translateX(-50%) scale(1.5); }
+}
+@keyframes duck-celebrate {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-9px) rotate(-6deg); }
+}
+@keyframes duck-winner-circle {
+  0%, 100% { transform:translate(-3px,0) rotate(-5deg); }
+  25% { transform:translate(0,-3px) rotate(0); }
+  50% { transform:translate(3px,0) rotate(5deg); }
+  75% { transform:translate(0,3px) rotate(0); }
+}
+@keyframes winning-square-pulse {
+  0%, 100% { box-shadow:inset 0 0 0 2px rgba(76,166,140,.15), 0 0 0 0 rgba(76,166,140,0); }
+  50% { box-shadow:inset 0 0 0 2px rgba(76,166,140,.3), 0 0 0 3px rgba(76,166,140,.12); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .board-duck-frame,
+  .square:has(.board-duck)::after { animation-duration: 1ms; animation-iteration-count: 1; }
+}
+
+/* Pond palette to tie the interface to the pixel-art river scene. */
+.topbar { border-color:rgba(57,108,99,.2); }
+.brand { color:#23464b; }
+.top-note,.page-footer { color:#587b7c; }
+.avatar { background:#f3d98a; color:#5d4a25; }
+.hero h1 { color:#1d454b; }
+.hero p { color:#557477; }
+.eyebrow { color:#a86e25; }
+.game-card,.score-card,.how-card {
+  background:rgba(255,253,246,.96);
+  border-color:#d5e6dc;
+  box-shadow:0 12px 36px rgba(34,83,72,.1);
+}
+.player-card { background:#fffef9; border-color:#dce9e1; }
+.player-card.active.x-active { border-color:#e5c77e; background:#fff9e9; }
+.player-card.active.o-active { border-color:#9fcfc1; background:#f1faf4; }
+.x-color { background:#fff2cf; }
+.o-color { background:#e4f4ed; }
+.turn-banner { background:#edf6f1; color:#27484d; }
+.turn-finished { background:#fff6df; }
+.board .square { background:#f2f8f3; border-color:#c8ded5; }
+.board .square:enabled:hover { background:#e7f5ee; border-color:#80beaa; }
+.board .square-x { background:#fff8e8; }
+.board .square-o { background:#edf8f3; }
+.board .square-winner { background:#effaf5; }
+.score-line { color:#315158; }
+.score-symbol.coral { background:#fff2cf; }
+.score-symbol.teal { background:#e4f4ed; }
+.leaderboard-foot { background:#f2f7ef; color:#627c73; }
+.tiny-stars { color:#d39a3e; }
+.trophy-icon { background:#fff2cf; color:#b07a2d; }
+.tip-card { background:#eaf4eb; border-color:#cfe2d4; }
+.tip-star { background:#fff8e3; color:#bb8937; }
+.tip-label { color:#718b72; }
+.tip-card p { color:#4c6864; }
+.tip-card p strong { color:#29494a; }
+.tip-arrow { color:#6c9486; }
+.step-number { color:#8c6728; background:#fff2cf; }
+.how-card p { color:#5c7775; }
+.page-footer { border-color:rgba(57,108,99,.2); }
+.page-footer span:last-child { color:#47766d; }
+
+/* Pixel lettering for game identity; keep long copy in a readable system font. */
+body { font-family:"Trebuchet MS","Segoe UI",sans-serif; }
+button,input,textarea,select { font:inherit; }
+.hero h1 { font-family:"Press Start 2P",monospace; font-weight:400; font-size:clamp(20px,3vw,30px); line-height:1.65; letter-spacing:-1.2px; }
+.brand { font-family:"Press Start 2P",monospace; font-weight:400; font-size:9px; letter-spacing:-.7px; }
+.top-note,.eyebrow,.round-label,.game-clock,.player-caption,.game-footer>span,
+.leaderboard-foot,.tip-label,.step-number,.page-footer,.square-number {
+  font-family:"Press Start 2P",monospace;
+  letter-spacing:-.04em;
+}
+.top-note { font-size:6px; }
+.eyebrow { font-size:7px; }
+.round-label,.game-clock { font-size:7px; }
+.player-caption { font-size:6px; }
+.game-footer>span,.leaderboard-foot,.tip-label,.page-footer { font-size:6px; }
+.score-reset { margin-left:auto; border:1px solid rgba(55,103,95,.4); border-radius:7px; background:#edf7f3; color:#315f57; padding:8px 10px; font:inherit; font-size:10px; font-weight:700; line-height:1.4; letter-spacing:.2px; cursor:pointer; white-space:nowrap; }
+.score-reset:hover { background:#dcefe8; border-color:rgba(49,95,87,.65); }
+.score-reset:focus-visible { outline:2px solid #47766d; outline-offset:2px; }
+.step-number { font-size:7px; }
+.square-number { font-size:7px; }
+.brand-mark { transform:scale(.92); transform-origin:left center; }
+.aside-heading h2,.how-card h3 { font-family:"Press Start 2P",monospace; font-weight:400; font-size:8px; line-height:1.7; }
+.game-footer button { font-family:"Press Start 2P",monospace; font-size:7px; }
+.hero p,.player-name,.turn-banner strong,.score-player,.how-card p,.tip-card p {
+  font-family:"Trebuchet MS","Segoe UI",sans-serif;
+}
+
