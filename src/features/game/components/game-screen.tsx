@@ -33,6 +33,7 @@ export function GameScreen() {
   const [score, setScore] = useState<ScoreState>({ X: 0, O: 0, draws: 0 });
   const [scoresLoaded, setScoresLoaded] = useState(false);
   const [lastScoreActivity, setLastScoreActivity] = useState<number | null>(null);
+  const [dismissedResultId, setDismissedResultId] = useState<string | null>(null);
   const start = useCallback(async () => {
     setBusy(true);
     setMessage("");
@@ -117,6 +118,7 @@ export function GameScreen() {
 
   async function beginNewRound() {
     if (busy) return;
+    if (game) setDismissedResultId(game.id);
     setBusy(true);
     setMessage("");
     setDucksSinking(true);
@@ -159,6 +161,7 @@ export function GameScreen() {
   }
 
   const finished = game?.status !== "in_progress";
+  const showResult = !!game && game.status !== "in_progress" && dismissedResultId !== game.id;
   const statusText = !game
     ? "Getting your board ready…"
     : game.status === "won"
@@ -224,7 +227,7 @@ export function GameScreen() {
                 disabled={!!cell || finished || busy || loading}
                 onClick={() => void move(index)}
               >
-                {cell ? <BoardDuckToken mark={cell} isWinner={isWinnerCell}/> : <span className="square-number">0{index + 1}</span>}
+                {cell && <BoardDuckToken mark={cell} isWinner={isWinnerCell}/>}
               </button>
               );
             })}
@@ -250,6 +253,77 @@ export function GameScreen() {
         </aside>
       </section>
       <footer className="page-footer"><span>MADE BY JAMES VENTURA</span><span>✳ &nbsp;MAY THE BEST QUACK WIN!</span></footer>
+
+      {showResult && game && (
+        <div
+          className="celebration-overlay"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setDismissedResultId(game.id);
+          }}
+        >
+          <div className="celebration-confetti" aria-hidden="true">
+            {Array.from({ length: 26 }, (_, index) => (
+              <span
+                key={index}
+                className={`confetti-piece confetti-color-${index % 5}`}
+                style={{ left: `${(index * 41 + 6) % 100}%`, animationDelay: `${(index % 8) * 0.08}s` }}
+              />
+            ))}
+          </div>
+          <section
+            className={`celebration-dialog ${game.status === "draw" ? "is-draw" : "is-win"}`}
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="result-title"
+            aria-describedby="result-description"
+            onKeyDown={(event) => {
+              if (event.key === "Escape") setDismissedResultId(game.id);
+            }}
+          >
+            <button
+              className="celebration-close"
+              type="button"
+              aria-label="Close result"
+              autoFocus
+              onClick={() => setDismissedResultId(game.id)}
+            >×</button>
+            <div className="celebration-burst" aria-hidden="true"><Sparkles size={20}/></div>
+            <p className="celebration-kicker">{game.status === "won" ? "POND CHAMPIONS" : "ROUND COMPLETE"}</p>
+            <div className="celebration-ducks" aria-hidden="true">
+              {game.status === "won" && game.winner ? (
+                <span className="celebration-duck champion-duck"><DuckToken mark={game.winner}/></span>
+              ) : (
+                <>
+                  <span className="celebration-duck draw-duck draw-duck-x"><DuckToken mark="X"/></span>
+                  <span className="celebration-duck draw-duck draw-duck-o"><DuckToken mark="O"/></span>
+                </>
+              )}
+            </div>
+            <h2 id="result-title">
+              {game.status === "won" ? `Team ${game.winner} wins!` : "It's a duck tie!"}
+            </h2>
+            <p id="result-description" className="celebration-description">
+              {game.status === "won"
+                ? "Three in a row! That was a quack-tacular finish."
+                : "Nine squares, two great teams, and a perfectly matched pond."}
+            </p>
+            <div className="celebration-scoreline">
+              <span>TEAM X <strong>{score.X}</strong></span>
+              <i>·</i>
+              <span>TEAM O <strong>{score.O}</strong></span>
+              <i>·</i>
+              <span>DRAWS <strong>{score.draws}</strong></span>
+            </div>
+            <Button className="celebration-next" size="lg" onClick={() => void beginNewRound()}>
+              <RotateCcw size={17}/> Play another round
+            </Button>
+            <button className="celebration-back" type="button" onClick={() => setDismissedResultId(game.id)}>
+              Take a look at the board
+            </button>
+          </section>
+        </div>
+      )}
     </main>
   );
 }
