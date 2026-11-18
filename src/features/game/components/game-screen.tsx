@@ -263,7 +263,7 @@ export function GameScreen() {
           }}
         >
           <div className="celebration-confetti" aria-hidden="true">
-            {Array.from({ length: 26 }, (_, index) => (
+            {Array.from({ length: 14 }, (_, index) => (
               <span
                 key={index}
                 className={`confetti-piece confetti-color-${index % 5}`}

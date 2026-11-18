@@ -231,7 +231,6 @@ button,input,textarea,select { font:inherit; }
   overflow:hidden;
   padding:22px;
   background:rgba(20,54,52,.62);
-  backdrop-filter:blur(7px);
   animation:celebration-fade-in .24s ease-out both;
 }
 .celebration-dialog {
@@ -289,7 +288,7 @@ button,input,textarea,select { font:inherit; }
 .celebration-duck .duck-token { width:100%; height:100%; image-rendering:pixelated; }
 .champion-duck { animation:duck-prize-bounce .68s ease-in-out infinite alternate; }
 .draw-duck-x { transform:translateX(10px) rotate(-5deg); animation:duck-prize-bounce .75s ease-in-out infinite alternate; }
-.draw-duck-o { transform:translateX(-10px) rotate(5deg); animation:duck-prize-bounce .75s .2s ease-in-out infinite alternate-reverse; }
+.draw-duck-o { transform:translateX(-10px) rotate(5deg); animation:duck-prize-bounce .75s .15s ease-in-out infinite alternate-reverse; }
 .celebration-dialog h2 {
   margin:3px 0 10px;
   color:#23494a;
@@ -333,7 +332,7 @@ button,input,textarea,select { font:inherit; }
   text-underline-offset:3px;
 }
 .celebration-confetti { position:absolute; inset:0; z-index:1; overflow:hidden; pointer-events:none; }
-.confetti-piece { position:absolute; top:-18px; width:8px; height:13px; border-radius:2px; animation:confetti-drop 2.4s cubic-bezier(.2,.62,.43,1) both; }
+.confetti-piece { position:absolute; top:-18px; width:8px; height:13px; border-radius:2px; animation:confetti-drop 1.8s cubic-bezier(.2,.62,.43,1) both; }
 .confetti-color-0 { background:#f3c64f; }
 .confetti-color-1 { background:#f18a69; }
 .confetti-color-2 { background:#62b99f; }
